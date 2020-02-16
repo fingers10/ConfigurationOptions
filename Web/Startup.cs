@@ -18,6 +18,8 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHostedService<ValidateOptionsService>();
+
             var pagingOptionsLimit = Configuration.GetValue<int>("DefaultPagingOptions:limit");
 
             var pagingOptionsSection = Configuration.GetSection("DefaultPagingOptions");
@@ -43,7 +45,6 @@ namespace Web
             }
 
             services.AddSingleton<MonitorService, MonitorService>();
-
 
             services.AddRazorPages();
         }
